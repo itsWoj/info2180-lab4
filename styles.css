@@ -1,0 +1,88 @@
+/* Styling for the body */
+body {
+    background-color: #f0f0f0; /* Light greyish color */
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+/* Centering and styling the title */
+h1 {
+    text-align: center; /* Centers the title horizontally */
+    font-weight: bold;  /* Makes the title bold */
+    text-transform: uppercase; /* Transforms the text to uppercase */
+    margin-top: 20px; /* Adds space at the top */
+    font-size: 2rem; /* Sets a larger font size */
+    color: #333; /* Dark text color */
+    background-color: #add8e6; /* Light blue background */
+    padding: 10px 0; /* Adds padding for spacing */
+}
+
+h2 {
+    margin-top: 20px;
+    font-size: 1.5rem;
+    color: #333;
+    border-bottom: 1px solid #ccc; /* Adds a thin grey line */
+    padding-bottom: 5px; /* Adds some spacing between the text and the line */
+}
+
+/* Styling for the container */
+.container {
+    width: 80%;
+    margin: 0 auto; /* Centers the container */
+}
+
+/* Centering the search box and button */
+.search-section {
+    text-align: center; /* Centers the search section */
+    margin: 20px 0; /* Adds space above and below */
+}
+
+input[type="text"] {
+    padding: 10px;
+    font-size: 1rem;
+    width: 60%;
+    max-width: 400px;
+    margin-bottom: 10px;
+}
+
+button {
+    padding: 10px 20px;
+    font-size: 1rem;
+    cursor: pointer;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+/* Styling for the results section */
+#result {
+    margin-top: 20px;
+    padding: 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #fff; /* White background for results */
+}
+
+/* Styling for the list of superheroes */
+.hero-list {
+    list-style-type: none;
+    padding: 0;
+}
+
+.hero-list li {
+    margin-bottom: 10px;
+    font-size: 1.2rem;
+}
+
+.not-found {
+    color: red; /* Sets the text color to red */
+    font-weight: bold; /* Makes the text bold */
+    font-size: 1.2rem; /* Slightly larger font size */
+    margin-top: 10px; /* Adds some spacing above */
+}

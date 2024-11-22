@@ -4,20 +4,26 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Avengers Character Search</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
 
 <div class="container">
     <h1>Avengers Character Search</h1>
 
-    <input type="text" id="searchInput" placeholder="Search for a Superhero...">
-    
-    <button id="searchButton">Search</button>
-    
-    <div id="result"></div>
+    <!-- Search input and button section -->
+    <div class="search-section">
+        <input type="text" id="searchInput" placeholder="Search for a superhero...">
+        <button id="searchButton">Search</button>
+    </div>
+
+    <!-- Results section -->
+    <h2>Results:</h2> <!-- Added the Results heading -->
+    <div id="result">
+        <!-- Results will be displayed dynamically here -->
+    </div>
 </div>
 
 <script src="app.js"></script>
-
 </body>
 </html>
