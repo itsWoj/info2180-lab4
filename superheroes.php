@@ -1,5 +1,4 @@
 <?php
-
 $superheroes = [
   [
       "id" => 1,
@@ -60,9 +59,33 @@ $superheroes = [
       "name" => "Wanda Maximoff",
       "alias" => "Scarlett Witch",
       "biography" => "Notably powerful, Wanda Maximoff has fought both against and with the Avengers, attempting to hone her abilities and do what she believes is right to help the world.",
-  ], 
+  ],
 ];
 
-echo json_encode($superheroes);
-?>
+$query = isset($_GET['query']) ? $_GET['query'] : '';
 
+if ($query) {
+    $filteredSuperheroes = array_filter($superheroes, function($superhero) use ($query) {
+        return stripos($superhero['name'], $query) !== false || stripos($superhero['alias'], $query) !== false;
+    });
+
+    if (empty($filteredSuperheroes)) {
+        echo json_encode(["message" => "Superhero not found"]);
+        exit;
+    }
+
+    $result = array_map(function($superhero) {
+        return [
+            'name' => $superhero['name'],
+            'alias' => $superhero['alias'],
+            'biography' => $superhero['biography']
+        ];
+    }, array_values($filteredSuperheroes));
+} else {
+    $result = array_map(function($superhero) {
+        return ['alias' => $superhero['alias']];
+    }, $superheroes);
+}
+
+echo json_encode($result);
+?>

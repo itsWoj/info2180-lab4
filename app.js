@@ -1,19 +1,40 @@
-// Listen for the "click" event on the search button
+function sanitizeInput(input) {
+    const element = document.createElement('div');
+    if (input) {
+        element.innerText = input;
+        return element.innerHTML;  
+    }
+    return input;
+}
+
+// Event listener for the search button click
 document.getElementById("searchButton").addEventListener("click", function() {
-    // Use the Fetch API to request data from superheroes.php
-    fetch("superheroes.php")
-        .then(response => response.json())  // Parse the JSON response
+    const query = sanitizeInput(document.getElementById("searchInput").value.trim());
+
+    fetch(`superheroes.php?query=${encodeURIComponent(query)}`)
+        .then(response => response.json()) 
         .then(data => {
-            // Extract the superhero aliases into an array
-            const aliases = data.map(superhero => superhero.alias);
+            const resultDiv = document.getElementById("result");
 
-            // Join the aliases into a string with line breaks
-            const alertMessage = aliases.join("\n");
+            resultDiv.innerHTML = '';
 
-            // Show the aliases in an alert box, each alias on a new line
-            alert("Superheroes:\n" + alertMessage);
+            if (data.message) {
+                resultDiv.innerHTML = `<p>${data.message}</p>`;
+            } else {
+                data.forEach(superhero => {
+                    const superheroDiv = document.createElement("div");
+                    superheroDiv.innerHTML = `
+                        <h3>${superhero.alias}</h3>
+                    `;
+                    if (query) {
+                        superheroDiv.innerHTML += `
+                            <h4>A.K.A ${superhero.name}</h4>
+                            <p><strong>Biography:</strong> ${superhero.biography}</p>
+                        `;
+                    }
+                    resultDiv.appendChild(superheroDiv);
+                });
+            }
         })
-        .catch(error => {
-            console.error('Error:', error); // Handle any errors that occur during the fetch
-        });
+        .catch(error => console.error('Error:', error));
 });
